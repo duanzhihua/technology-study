@@ -1,6 +1,8 @@
 package cn.guxiangfly.condition;
 
+import cn.guxiangfly.pojo.RainBow;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
@@ -16,7 +18,9 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
         boolean a = beanDefinitionRegistry.containsBeanDefinition("cn.guxiangfly.pojo.Yellow");
 
         if (a&&b){
-            
+            RootBeanDefinition rootBeanDefinition = new RootBeanDefinition();
+            rootBeanDefinition.setBeanClass(RainBow.class);
+            beanDefinitionRegistry.registerBeanDefinition("RainRow",rootBeanDefinition);
         }
     }
 }
