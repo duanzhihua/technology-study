@@ -1,0 +1,4 @@
+#{autoPoiProperty.poiId,jdbcType=BIGINT},
+#{autoPoiProperty.timeDim,jdbcType=TINYINT},
+#{autoPoiProperty.seasonDim,jdbcType=TINYINT},
+#{autoPoiProperty.propertyMap,jdbcType=VARCHAR}

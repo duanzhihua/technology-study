@@ -5,6 +5,14 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-study</module>
+        <module>netty-study</module>
+        <module>kafka-learn</module>
+        <module>springboot-study</module>
+        <module>kylin-learn</module>
+        <module>jvm-learn</module>
+        <module>comel-study</module>
+        <module>zookeeper-learn</module>
+        <module>java-agent-learn</module>
     </modules>
 
     <groupId>cn.guxiangfly</groupId>
