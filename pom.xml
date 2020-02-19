@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-study</module>
+        <module>cat-study</module>
     </modules>
 
     <groupId>cn.guxiangfly</groupId>
