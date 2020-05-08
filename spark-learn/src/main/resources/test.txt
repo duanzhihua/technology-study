@@ -1,0 +1,47 @@
+bin/sqoop import \
+--connect jdbc:mysql://192.168.25.1:3306/kuwomusic \
+--username root \
+--password root \
+--target-dir /user/kuwomusic \
+--delete-target-dir \
+--num-mappers 1 \
+--fields-terminated-by "\t" \
+--table singer_info
+
+
+bin/sqoop import \
+--connect jdbc:mysql://192.168.25.1:3306/kuwomusic \
+--username root \
+--password root \
+--table singer_info \
+--num-mappers 1
+--hive-import
+--fields-terminated-by "\t"
+--hive-overwrite
+--hive-table singer_info
+
+
+bin/sqoop import \
+--connect jdbc:mysql://192.168.25.1:3306/kuwomusic \
+--username root \
+--password root \
+--table singer_info \
+--num-mappers 1 \
+--fields-terminated-by "\u0001" \
+--target-dir /user/kuwomusic \
+--delete-target-dir \
+--hive-overwrite  \
+--hive-table singer_info_hive2
+
+
+CREATE TABLE `hive_singer_info`(
+  `id` int,
+  `singer_name` string,
+  `fans_count` int,
+  `mv_count` int,
+  `song_count` int,
+  `singer_type` string,
+  `singer_url` string)
+
+
+  bin/sqoop import --connect jdbc:mysql://192.168.25.1:3306/kuwomusic  --username root --password root --table singer_info --hive-import
