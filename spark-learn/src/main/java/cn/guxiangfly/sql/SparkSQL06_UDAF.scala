@@ -49,7 +49,6 @@ object SparkSQL05_UDAF {
     override def dataType: DataType = DoubleType
 
 
-
     override def deterministic: Boolean = true
     //计算之前的缓冲区初始化
     override def initialize(buffer: MutableAggregationBuffer): Unit = {
