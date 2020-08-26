@@ -15,6 +15,10 @@
         <module>java-agent-learn</module>
         <module>flink-learn</module>
         <module>spark-learn</module>
+        <module>waibao-study</module>
+        <module>elasticsearch-study</module>
+        <module>springboot-15-study</module>
+        <module>current-limiting-study</module>
         <!--        <module>cat-study</module>-->
     </modules>
 

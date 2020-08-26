@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "digoduct_comment": {
+      "properties": {
+        "title": {
+          "type": "text",
+          "store": true,
+          "index": true,
+          "analyzer": "ik_smart"
+        },
+        "comment_link": {
+          "type": "text",
+          "store": true,
+          "index": true,
+          "analyzer": "ik_smart"
+        }
+      }
+    }
+  }
+}

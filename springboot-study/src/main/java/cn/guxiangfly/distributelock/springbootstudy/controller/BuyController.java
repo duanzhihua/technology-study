@@ -17,11 +17,13 @@ public class BuyController {
     @Autowired
     private ZookeeperConfig zookeeperConfig;
 
+
+
     @GetMapping("/buy")
     public String getBuy(){
-        zookeeperConfig.getLock();
-
-        zookeeperConfig.releaseLock();
+//        zookeeperConfig.getLock();
+//
+//        zookeeperConfig.releaseLock();
         return "ok";
     }
 }
