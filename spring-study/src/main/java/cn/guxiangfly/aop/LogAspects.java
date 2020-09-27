@@ -47,9 +47,9 @@ public class LogAspects {
     }
 
 
-/*    @Around(value="pointCut()")
-    public void logAround(JoinPoint joinPoint){
-        joinPoint
-        System.out.println(""+joinPoint.getSignature().getName()+"异常。。。异常信息：{}");
-    }*/
+//    @Around(value="pointCut()")
+//    public void logAround(JoinPoint joinPoint){
+//
+//        System.out.println(""+joinPoint.getSignature().getName()+" logAround 异常。。。异常信息：{}");
+//    }
 }

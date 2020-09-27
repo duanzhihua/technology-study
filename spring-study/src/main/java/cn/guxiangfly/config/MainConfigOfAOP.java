@@ -1,7 +1,9 @@
 package cn.guxiangfly.config;
 
+import cn.guxiangfly.aop.CatTransactionAspect;
 import cn.guxiangfly.aop.LogAspects;
 import cn.guxiangfly.aop.MathCalculator;
+import cn.guxiangfly.aop.PlusCalculator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -183,7 +185,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 
  * 
  */
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = false)
 @Configuration
 public class MainConfigOfAOP {
 	 
@@ -198,5 +200,20 @@ public class MainConfigOfAOP {
 	public LogAspects logAspects(){
 		return new LogAspects();
 	}
+
+
+
+	//业务逻辑类加入容器中
+	@Bean
+	public PlusCalculator plusCalculator(){
+		return new PlusCalculator();
+	}
+
+	//切面类加入到容器中
+	@Bean
+	public CatTransactionAspect catTransactionAspect(){
+		return new CatTransactionAspect();
+	}
+
 }
 
