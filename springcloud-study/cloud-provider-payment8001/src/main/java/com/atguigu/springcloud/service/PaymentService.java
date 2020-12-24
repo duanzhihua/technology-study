@@ -1,6 +1,6 @@
-package com.atguigu.springcloud.service;
+package cn.guxiangfly.springcloud.service;
 
-import com.atguigu.springcloud.entities.Payment;
+import cn.guxiangfly.springcloud.entities.Payment;
 
 /**
  * @author zzyy

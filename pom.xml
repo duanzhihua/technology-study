@@ -20,6 +20,7 @@
         <module>springboot-15-study</module>
         <module>current-limiting-study</module>
         <module>springcloud-study</module>
+        <module>flink-java-learn</module>
         <!--        <module>cat-study</module>-->
     </modules>
 

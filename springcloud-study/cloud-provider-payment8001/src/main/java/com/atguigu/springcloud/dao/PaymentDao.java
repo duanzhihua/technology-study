@@ -1,6 +1,6 @@
-package com.atguigu.springcloud.dao;
+package cn.guxiangfly.springcloud.dao;
 
-import com.atguigu.springcloud.entities.Payment;
+import cn.guxiangfly.springcloud.entities.Payment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
