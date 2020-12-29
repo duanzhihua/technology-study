@@ -8,6 +8,8 @@ package cn.guxiangfly.apitest.tableapi;/**
  * Created by wushengran on 2020/11/13 11:54
  */
 
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.DataTypes;
 import org.apache.flink.table.api.Table;
@@ -15,6 +17,7 @@ import org.apache.flink.table.api.java.StreamTableEnvironment;
 import org.apache.flink.table.descriptors.Csv;
 import org.apache.flink.table.descriptors.FileSystem;
 import org.apache.flink.table.descriptors.Schema;
+import org.apache.flink.types.Row;
 
 /**
  * @ClassName: TableTest3_FileOutput
@@ -22,7 +25,7 @@ import org.apache.flink.table.descriptors.Schema;
  * @Author: wushengran on 2020/11/13 11:54
  * @Version: 1.0
  */
-public class TableTest3_FileOutput {
+public class TableTest3_FileOutput_v2 {
     public static void main(String[] args) throws Exception {
         // 1. 创建环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -67,13 +70,15 @@ public class TableTest3_FileOutput {
                 .withFormat( new Csv())
                 .withSchema( new Schema()
                         .field("id", DataTypes.STRING())
-//                        .field("cnt", DataTypes.BIGINT())
                         .field("temperature", DataTypes.DOUBLE())
                 )
                 .createTemporaryTable("outputTable");
 
         resultTable.insertInto("outputTable");
 //        aggTable.insertInto("outputTable");
+
+        DataStream<Row> resultAppendStream = tableEnv.toAppendStream(resultTable, Row.class);
+        DataStream<Tuple2<Boolean, Row>> resultRetractStream = tableEnv.toRetractStream(resultTable, Row.class);
 
         env.execute();
     }

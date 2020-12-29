@@ -24,7 +24,7 @@ import java.util.List;
  * @Author: wushengran on 2020/11/10 15:30
  * @Version: 1.0
  */
-public class StateTest1_OperatorState {
+public class StateTest1_OperatorState_V2 {
     public static void main(String[] args) throws Exception{
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
