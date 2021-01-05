@@ -34,14 +34,19 @@ public class StateTest4_FaultTolerance {
         env.setStateBackend( new FsStateBackend(""));
         env.setStateBackend( new RocksDBStateBackend(""));
 
-        // 2. 检查点配置
+        // 2. 检查点配置   300毫秒做一次checkpoint
         env.enableCheckpointing(300);
 
         // 高级选项
         env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
         env.getCheckpointConfig().setCheckpointTimeout(60000L);
+
+        // 由于我要300毫秒就保存一次，但是CheckpointTimeout是 60000L，所以有可能同一时间有多个 checkpoint要保存
         env.getCheckpointConfig().setMaxConcurrentCheckpoints(2);
+        //指的是前一次checkpoint保存结束，到下一次checkpoint开始保存，最小的间隔时间
         env.getCheckpointConfig().setMinPauseBetweenCheckpoints(100L);
+
+        // 倾向于使用checkpoint 来做恢复
         env.getCheckpointConfig().setPreferCheckpointForRecovery(true);
         env.getCheckpointConfig().setTolerableCheckpointFailureNumber(0);
 

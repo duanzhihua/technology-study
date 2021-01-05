@@ -23,6 +23,7 @@ import java.util.List;
  * @Description:
  * @Author: wushengran on 2020/11/10 15:30
  * @Version: 1.0
+ *  定义一个有状态的map操作，统计当前分区数据个数
  */
 public class StateTest1_OperatorState_V2 {
     public static void main(String[] args) throws Exception{
@@ -47,6 +48,11 @@ public class StateTest1_OperatorState_V2 {
     }
 
     // 自定义MapFunction
+
+    /**
+     * 泛型：第一个输入，第二个输出
+     * ListCheckpointed 就是保存列表状态
+     */
     public static class MyCountMapper implements MapFunction<SensorReading, Integer>, ListCheckpointed<Integer>{
         // 定义一个本地变量，作为算子状态
         private Integer count = 0;
@@ -57,11 +63,23 @@ public class StateTest1_OperatorState_V2 {
             return count;
         }
 
+        /**
+         *  这个是对状态做一个快照,将状态进行保存。
+         * @param checkpointId
+         * @param timestamp
+         * @return
+         * @throws Exception
+         */
         @Override
         public List<Integer> snapshotState(long checkpointId, long timestamp) throws Exception {
             return Collections.singletonList(count);
         }
 
+        /**
+         * 用于将保存的状态进行恢复。
+         * @param state
+         * @throws Exception
+         */
         @Override
         public void restoreState(List<Integer> state) throws Exception {
             for( Integer num: state ) {

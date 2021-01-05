@@ -55,6 +55,13 @@ public class ProcessTest1_KeyedProcessFunction {
             tsTimerState =  getRuntimeContext().getState(new ValueStateDescriptor<Long>("ts-timer", Long.class));
         }
 
+        /**
+         *
+         * @param value  输入
+         * @param ctx  上下文
+         * @param out   输出
+         * @throws Exception
+         */
         @Override
         public void processElement(SensorReading value, Context ctx, Collector<Integer> out) throws Exception {
             out.collect(value.getId().length());
