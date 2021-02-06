@@ -67,7 +67,7 @@ public class TxPayMatchByJoin {
         // 区间连接两条流，得到匹配的数据
         SingleOutputStreamOperator<Tuple2<OrderEvent, ReceiptEvent>> resultStream = orderEventStream
                 .keyBy(OrderEvent::getTxId)
-                .intervalJoin(receiptEventStream.keyBy(ReceiptEvent::getTxId))
+                . intervalJoin(receiptEventStream.keyBy(ReceiptEvent::getTxId))
                 .between(Time.seconds(-3), Time.seconds(5))    // -3，5 区间范围
                 .process(new TxPayMatchDetectByJoin());
 

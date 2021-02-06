@@ -8,6 +8,8 @@ package com.atguigu.networkflow_analysis.beans;/**
  * Created by wushengran on 2020/11/14 15:11
  */
 
+import java.util.Date;
+
 /**
  * @ClassName: UserBehavior
  * @Description:
@@ -21,6 +23,7 @@ public class UserBehavior {
     private Integer categoryId;
     private String behavior;
     private Long timestamp;
+
 
     public UserBehavior() {
     }

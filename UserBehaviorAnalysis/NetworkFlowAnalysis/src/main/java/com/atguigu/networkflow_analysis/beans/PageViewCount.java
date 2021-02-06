@@ -8,6 +8,8 @@ package com.atguigu.networkflow_analysis.beans;/**
  * Created by wushengran on 2020/11/16 9:29
  */
 
+import java.util.Date;
+
 /**
  * @ClassName: PageViewCount
  * @Description:
@@ -18,6 +20,15 @@ public class PageViewCount {
     private String url;
     private Long windowEnd;
     private Long count;
+    private String nowTime;
+
+    public String getNowTime() {
+        return nowTime;
+    }
+
+    public void setNowTime(String nowTime) {
+        this.nowTime = nowTime;
+    }
 
     public PageViewCount() {
     }
@@ -58,6 +69,7 @@ public class PageViewCount {
                 "url='" + url + '\'' +
                 ", windowEnd=" + windowEnd +
                 ", count=" + count +
+                ", nowTime='" + nowTime + '\'' +
                 '}';
     }
 }

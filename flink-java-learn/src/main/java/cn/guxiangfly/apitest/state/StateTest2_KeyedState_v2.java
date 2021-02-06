@@ -3,16 +3,12 @@ package cn.guxiangfly.apitest.state;
 import cn.guxiangfly.apitest.beans.SensorReading;
 import cn.guxiangfly.apitest.beans.SensorReadingCount;
 import org.apache.flink.api.common.functions.RichMapFunction;
-import org.apache.flink.api.common.state.ListState;
-import org.apache.flink.api.common.state.ListStateDescriptor;
-import org.apache.flink.api.common.state.MapState;
-import org.apache.flink.api.common.state.MapStateDescriptor;
-import org.apache.flink.api.common.state.ReducingState;
+import org.apache.flink.api.common.state.StateTtlConfig;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
+import org.apache.flink.api.common.time.Time;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 
@@ -46,7 +42,18 @@ public class StateTest2_KeyedState_v2 {
 
         @Override
         public void open(Configuration parameters) throws Exception {
-            keyCountState = getRuntimeContext().getState(new ValueStateDescriptor<Integer>("key-count", Integer.class, 0));
+
+            //设置 state 过期时间
+            StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(Time.seconds(10)).setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
+                    .setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired)
+                    .build();
+
+
+            ValueStateDescriptor<Integer> keyCountStateDescriptor = new ValueStateDescriptor<>("key-count", Integer.class, 0);
+            keyCountStateDescriptor.enableTimeToLive(ttlConfig);
+
+            keyCountState = getRuntimeContext().getState(keyCountStateDescriptor);
+
         }
 
         @Override
